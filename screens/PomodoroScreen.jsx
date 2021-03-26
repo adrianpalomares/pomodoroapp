@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
   },
 });
 
+//TODO: Accept hours
 /**
  * Converts currentTime from seconds into correct format. Only shows minutes and seconds.
  * @param {number} currentTime
@@ -87,7 +88,16 @@ const PomodoroScreen = ({ navigation }) => {
       <View style={styles.changeTimeContainer}>
         <Button
           title="Change Time"
-          onPress={() => navigation.navigate('ChangeTimeScreen', { currentTime, setCurrentTime })}
+          onPress={() =>
+            navigation.navigate('ChangeTimeScreen', {
+              currentTime,
+              setCurrentTime,
+              pomodoroTime,
+              setPomodoroTime,
+              breakTime,
+              setBreakTime,
+            })
+          }
         />
       </View>
     </SafeAreaView>

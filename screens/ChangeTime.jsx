@@ -10,6 +10,10 @@ const styles = StyleSheet.create({
   },
 });
 
+function minutesToSeconds(minutes) {
+  return minutes * 60;
+}
+
 const ChangeTimeScreen = ({ navigation, route }) => {
   // Text input value
   const [minuteValue, setMinuteValue] = React.useState(null);
@@ -33,8 +37,8 @@ const ChangeTimeScreen = ({ navigation, route }) => {
         <Button
           title="Set Minutes"
           onPress={() => {
-            alert(minuteValue);
-            route.params.setCurrentTime(minuteValue);
+            route.params.setCurrentTime(minutesToSeconds(minuteValue));
+            alert('Time updated!');
           }}
         />
       </View>
