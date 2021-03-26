@@ -24,6 +24,11 @@ function minutesToSeconds(minutes) {
 const ChangeTimeScreen = ({ navigation, route }) => {
   // Text input value
   const [pomodoroMinuteValue, setPomodoroMinuteValue] = React.useState(null);
+  const [pomodoroSecondValue, setPomodoroSecondValue] = React.useState(null);
+
+  const [breakMinuteValue, setBreakMinuteValue] = React.useState(null);
+  const [breakSecondValue, setBreakSecondValue] = React.useState(null);
+  
   // route.params.setCurrentTime(0);
   return (
     <SafeAreaView>
@@ -42,14 +47,36 @@ const ChangeTimeScreen = ({ navigation, route }) => {
           returnKeyType="done"
         />
       </View>
+      <View>
+        <Text>Seconds</Text>
+        <TextInput
+          value={pomodoroSecondValue}
+          onChangeText={setPomodoroSecondValue}
+          style={styles.minutesTextInput}
+          keyboardType="numeric"
+          keyboardAppearance="dark"
+          returnKeyType="done"
+        />
+      </View>
       <View style={styles.centering}>
         <Text style={styles.heading}>Break Time</Text>
       </View>
       <View>
         <Text>Minutes</Text>
         <TextInput
-          // value={minuteValue}
-          // onChangeText={setMinuteValue}
+          value={breakSecondValue}
+          onChangeText={setBreakSecondValue}
+          style={styles.minutesTextInput}
+          keyboardType="numeric"
+          keyboardAppearance="dark"
+          returnKeyType="done"
+        />
+      </View>
+      <View>
+        <Text>Seconds</Text>
+        <TextInput
+          value={breakMinuteValue}
+          onChangeText={setBreakMinuteValue}
           style={styles.minutesTextInput}
           keyboardType="numeric"
           keyboardAppearance="dark"
