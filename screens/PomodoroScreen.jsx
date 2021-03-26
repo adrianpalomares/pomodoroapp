@@ -43,7 +43,7 @@ const PomodoroScreen = ({ navigation }) => {
   const [breakTime, setBreakTime] = React.useState(300); // Default is 5 minutes
   // Timer
   const [currentTime, setCurrentTime] = React.useState(pomodoroTime);
-  const [paused, setPaused] = React.useState(false);
+  const [paused, setPaused] = React.useState(true);
   // Used to tell if it is break time
   const [isBreak, setIsBreak] = React.useState(false);
 
