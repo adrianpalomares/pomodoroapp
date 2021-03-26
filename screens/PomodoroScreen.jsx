@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
 });
 
 /**
- * Converts currentTime from seconds into correct format. Show hours and minutes.
+ * Converts currentTime from seconds into correct format. Only shows minutes and seconds.
  * @param {number} currentTime
  * @returns currentTime in the correct format.
  */
@@ -39,11 +39,17 @@ function getTimeString(currentTime) {
 }
 
 const PomodoroScreen = ({ navigation }) => {
+  const [pomodoroTime, setPomodoroTime] = React.useState(1500); // Default is 25 minutes
+  const [breakTime, setBreakTime] = React.useState(300) // Default is 5 minutes
   // Timer
   const [currentTime, setCurrentTime] = React.useState(0);
   const [paused, setPaused] = React.useState(false);
-  let interval = null;
 
+  // Initial setup of timer
+  React.useEffect(() => {
+    setCurrentTime(pomodoroTime);
+  }, []);
+  let interval = null;
   React.useEffect(() => {
     // TODO: Check for 0
     if (currentTime == 25) {
