@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { SafeAreaView, Text, Button, View, StyleSheet } from 'react-native';
-import {vibrate} from '../utils'
+import { vibrate } from '../utils';
 
 const styles = StyleSheet.create({
   timeContainer: {
@@ -27,12 +27,23 @@ const styles = StyleSheet.create({
   },
 });
 
+/**
+ * Converts currentTime from seconds into correct format. Show hours and minutes.
+ * @param {number} currentTime
+ * @returns currentTime in the correct format.
+ */
+function getTimeString(currentTime) {
+  const date = new Date(0);
+  date.setSeconds(currentTime);
+  return date.toISOString().substr(14, 5);
+}
+
 const PomodoroScreen = ({ navigation }) => {
   // Timer
   const [currentTime, setCurrentTime] = React.useState(0);
   const [paused, setPaused] = React.useState(false);
   let interval = null;
-  
+
   React.useEffect(() => {
     // TODO: Check for 0
     if (currentTime == 25) {
@@ -57,11 +68,15 @@ const PomodoroScreen = ({ navigation }) => {
   return (
     <SafeAreaView>
       <View style={styles.timeContainer}>
-        <Text style={styles.timeText}>{currentTime}</Text>
+        <Text style={styles.timeText}>{getTimeString(currentTime)}</Text>
       </View>
       <View style={styles.timeActionContainer}>
-        <Button title="Start" onPress={() => setPaused(false)} />
-        <Button title="Pause" onPress={() => setPaused(true)} />
+        {paused ? (
+          <Button title="Start" onPress={() => setPaused(false)} />
+        ) : (
+          <Button title="Pause" onPress={() => setPaused(true)} />
+        )}
+        <Button title="Reset" />
       </View>
       <View style={styles.changeTimeContainer}>
         <Button
