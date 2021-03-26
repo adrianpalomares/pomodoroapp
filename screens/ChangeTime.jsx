@@ -17,8 +17,15 @@ const styles = StyleSheet.create({
   },
 });
 
-function minutesToSeconds(minutes) {
-  return minutes * 60;
+/**
+ * Will accept minutes and seconds as input and covert them into seconds. Helpful, because the application
+ * runs on seconds.
+ * @param {*} minutes
+ * @param {*} seconds
+ * @returns
+ */
+function convertToSeconds(minutes, seconds) {
+  return minutes * 60 + parseInt(seconds); // was treating seconds as a string
 }
 
 const ChangeTimeScreen = ({ navigation, route }) => {
@@ -28,7 +35,7 @@ const ChangeTimeScreen = ({ navigation, route }) => {
 
   const [breakMinuteValue, setBreakMinuteValue] = React.useState(null);
   const [breakSecondValue, setBreakSecondValue] = React.useState(null);
-  
+
   // route.params.setCurrentTime(0);
   return (
     <SafeAreaView>
@@ -64,8 +71,8 @@ const ChangeTimeScreen = ({ navigation, route }) => {
       <View>
         <Text>Minutes</Text>
         <TextInput
-          value={breakSecondValue}
-          onChangeText={setBreakSecondValue}
+          value={breakMinuteValue}
+          onChangeText={setBreakMinuteValue}
           style={styles.minutesTextInput}
           keyboardType="numeric"
           keyboardAppearance="dark"
@@ -75,8 +82,8 @@ const ChangeTimeScreen = ({ navigation, route }) => {
       <View>
         <Text>Seconds</Text>
         <TextInput
-          value={breakMinuteValue}
-          onChangeText={setBreakMinuteValue}
+          value={breakSecondValue}
+          onChangeText={setBreakSecondValue}
           style={styles.minutesTextInput}
           keyboardType="numeric"
           keyboardAppearance="dark"
@@ -89,7 +96,8 @@ const ChangeTimeScreen = ({ navigation, route }) => {
           title="Set Minutes"
           // TODO: Add break time update, also using wrong value
           onPress={() => {
-            route.params.setPomodoroTime(minutesToSeconds(pomodoroMinuteValue));
+            route.params.setPomodoroTime(convertToSeconds(pomodoroMinuteValue, pomodoroSecondValue));
+            route.params.setBreakTime(convertToSeconds(breakMinuteValue, breakSecondValue));
             alert('Time updated!');
           }}
         />
