@@ -30,13 +30,30 @@ const styles = StyleSheet.create({
 //TODO: Accept hours
 /**
  * Converts currentTime from seconds into correct format. Only shows minutes and seconds.
- * @param {number} currentTime
+ * @param {number} currentTime A reference to currentTime inside PomodoroScreenComponent
  * @returns currentTime in the correct format.
  */
 function getTimeString(currentTime) {
   const date = new Date(0);
   date.setSeconds(currentTime);
   return date.toISOString().substr(14, 5);
+}
+
+// TODO: Also get a reference to the interval so we can clear it.
+/**
+ * Restart pomodoro time. After this function is executed, the timer will be in the state of pomodoro.
+ * @param {*} pomodoroTime
+ * @param {*} setCurrentTime
+ * @param {*} setIsBreak
+ * @param {*} setPaused
+ */
+function resetTimer(pomodoroTime, setCurrentTime, setIsBreak, setPaused) {
+  // Pause timer first, and set isBreak to false
+  setPaused(true);
+  setIsBreak(false);
+
+  // Reset pomodoro time
+  setCurrentTime(pomodoroTime);
 }
 
 const PomodoroScreen = ({ navigation }) => {
@@ -83,7 +100,7 @@ const PomodoroScreen = ({ navigation }) => {
         ) : (
           <Button title="Pause" onPress={() => setPaused(true)} />
         )}
-        <Button title="Reset" />
+        <Button title="Reset" onPress={() => resetTimer(pomodoroTime, setCurrentTime, setIsBreak, setPaused)} />
       </View>
       <View style={styles.changeTimeContainer}>
         <Button
