@@ -29,6 +29,7 @@ const ChangeTimeScreen = ({ navigation, route }) => {
         />
       </View>
       <View>
+        {/* TODO: Handle empty value, null by default */}
         <Button
           title="Set Minutes"
           onPress={() => {

@@ -1,6 +1,30 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { SafeAreaView, Text, Button } from 'react-native';
+import { SafeAreaView, Text, Button, View, StyleSheet } from 'react-native';
+
+const styles = StyleSheet.create({
+  timeContainer: {
+    // flex: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20,
+    backgroundColor: 'pink',
+  },
+  timeText: {
+    fontSize: 100,
+  },
+  timeActionContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 50,
+    marginTop: 20,
+    backgroundColor: 'red',
+  },
+  changeTimeContainer: {
+    marginTop: 5,
+  },
+});
 
 const PomodoroScreen = ({ navigation }) => {
   // Timer
@@ -20,11 +44,19 @@ const PomodoroScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView>
-      <Button
-        title="Next Screen"
-        onPress={() => navigation.navigate('ChangeTimeScreen', { currentTime, setCurrentTime })}
-      />
-      <Text>{currentTime}</Text>
+      <View style={styles.timeContainer}>
+        <Text style={styles.timeText}>{currentTime}</Text>
+      </View>
+      <View style={styles.timeActionContainer}>
+        <Button title="Start" />
+        <Button title="Pause" />
+      </View>
+      <View style={styles.changeTimeContainer}>
+        <Button
+          title="Change Time"
+          onPress={() => navigation.navigate('ChangeTimeScreen', { currentTime, setCurrentTime })}
+        />
+      </View>
     </SafeAreaView>
   );
 };
