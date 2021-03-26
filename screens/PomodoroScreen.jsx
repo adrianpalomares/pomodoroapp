@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { SafeAreaView, Text, Button, View, StyleSheet } from 'react-native';
+import {vibrate} from '../utils'
 
 const styles = StyleSheet.create({
   timeContainer: {
@@ -30,14 +31,16 @@ const PomodoroScreen = ({ navigation }) => {
   // Timer
   const [currentTime, setCurrentTime] = React.useState(0);
   const [paused, setPaused] = React.useState(false);
-  let interval;
+  let interval = null;
+  
   React.useEffect(() => {
-    // interval = setInterval(() => {
-    //   // When the value is set in ChangeTime, it is treated as a string
-    //   const valueInInteger = parseInt(currentTime);
-    //   setCurrentTime(valueInInteger + 1);
-    // }, 1000);
+    // TODO: Check for 0
+    if (currentTime == 25) {
+      // Vibrate then switch to other mode
+      vibrate();
+    }
 
+    // Only starts timer if not paused
     if (!paused) {
       interval = setInterval(() => {
         // When the value is set in ChangeTime, it is treated as a string
