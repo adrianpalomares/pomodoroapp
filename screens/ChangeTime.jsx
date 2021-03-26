@@ -3,6 +3,13 @@ import React from 'react';
 import { Button, SafeAreaView, Text, TextInput, View, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+  centering: {
+    // justifyContent: 'center',
+    alignItems: 'center',
+  },
+  heading: {
+    fontSize: 50,
+  },
   minutesTextInput: {
     backgroundColor: '#fff',
     height: 30,
@@ -16,16 +23,33 @@ function minutesToSeconds(minutes) {
 
 const ChangeTimeScreen = ({ navigation, route }) => {
   // Text input value
-  const [minuteValue, setMinuteValue] = React.useState(null);
+  const [pomodoroMinuteValue, setPomodoroMinuteValue] = React.useState(null);
   // route.params.setCurrentTime(0);
   return (
     <SafeAreaView>
       {/* <Button title="Next Screen" onPress={() => navigation.navigate('Change Time')} /> */}
+      <View style={styles.centering}>
+        <Text style={styles.heading}>Pomodoro Time</Text>
+      </View>
       <View>
-        <Text>Select Minutes</Text>
+        <Text>Minutes</Text>
         <TextInput
-          value={minuteValue}
-          onChangeText={setMinuteValue}
+          value={pomodoroMinuteValue}
+          onChangeText={setPomodoroMinuteValue}
+          style={styles.minutesTextInput}
+          keyboardType="numeric"
+          keyboardAppearance="dark"
+          returnKeyType="done"
+        />
+      </View>
+      <View style={styles.centering}>
+        <Text style={styles.heading}>Break Time</Text>
+      </View>
+      <View>
+        <Text>Minutes</Text>
+        <TextInput
+          // value={minuteValue}
+          // onChangeText={setMinuteValue}
           style={styles.minutesTextInput}
           keyboardType="numeric"
           keyboardAppearance="dark"
@@ -36,8 +60,9 @@ const ChangeTimeScreen = ({ navigation, route }) => {
         {/* TODO: Handle empty value, null by default */}
         <Button
           title="Set Minutes"
+          // TODO: Add break time update, also using wrong value
           onPress={() => {
-            route.params.setCurrentTime(minutesToSeconds(minuteValue));
+            route.params.setPomodoroTime(minutesToSeconds(pomodoroMinuteValue));
             alert('Time updated!');
           }}
         />
