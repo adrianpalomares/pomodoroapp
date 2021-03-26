@@ -29,18 +29,27 @@ const styles = StyleSheet.create({
 const PomodoroScreen = ({ navigation }) => {
   // Timer
   const [currentTime, setCurrentTime] = React.useState(0);
-
+  const [paused, setPaused] = React.useState(false);
+  let interval;
   React.useEffect(() => {
-    const interval = setInterval(() => {
-      // When the value is set in ChangeTime, it is treated as a string
-      const valueInInteger = parseInt(currentTime);
-      setCurrentTime(valueInInteger + 1);
-    }, 1000);
+    // interval = setInterval(() => {
+    //   // When the value is set in ChangeTime, it is treated as a string
+    //   const valueInInteger = parseInt(currentTime);
+    //   setCurrentTime(valueInInteger + 1);
+    // }, 1000);
+
+    if (!paused) {
+      interval = setInterval(() => {
+        // When the value is set in ChangeTime, it is treated as a string
+        const valueInInteger = parseInt(currentTime);
+        setCurrentTime(valueInInteger + 1);
+      }, 1000);
+    }
 
     return () => {
       clearInterval(interval);
     };
-  }, [currentTime]);
+  }, [currentTime, paused]);
 
   return (
     <SafeAreaView>
@@ -48,8 +57,8 @@ const PomodoroScreen = ({ navigation }) => {
         <Text style={styles.timeText}>{currentTime}</Text>
       </View>
       <View style={styles.timeActionContainer}>
-        <Button title="Start" />
-        <Button title="Pause" />
+        <Button title="Start" onPress={() => setPaused(false)} />
+        <Button title="Pause" onPress={() => setPaused(true)} />
       </View>
       <View style={styles.changeTimeContainer}>
         <Button
