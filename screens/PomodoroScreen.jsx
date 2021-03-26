@@ -8,7 +8,9 @@ const PomodoroScreen = ({ navigation }) => {
 
   React.useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentTime(currentTime + 1);
+      // When the value is set in ChangeTime, it is treated as a string
+      const valueInInteger = parseInt(currentTime);
+      setCurrentTime(valueInInteger + 1);
     }, 1000);
 
     return () => {
@@ -18,7 +20,10 @@ const PomodoroScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView>
-      <Button title="Next Screen" onPress={() => navigation.navigate('ChangeTimeScreen', { currentTime, setCurrentTime })} />
+      <Button
+        title="Next Screen"
+        onPress={() => navigation.navigate('ChangeTimeScreen', { currentTime, setCurrentTime })}
+      />
       <Text>{currentTime}</Text>
     </SafeAreaView>
   );

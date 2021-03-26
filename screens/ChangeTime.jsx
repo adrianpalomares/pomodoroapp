@@ -10,24 +10,36 @@ const styles = StyleSheet.create({
   },
 });
 
-const ChangeTimeScreen = ({ navigation, route }) => (
+const ChangeTimeScreen = ({ navigation, route }) => {
+  // Text input value
+  const [minuteValue, setMinuteValue] = React.useState(null);
   // route.params.setCurrentTime(0);
-  <SafeAreaView>
-    {/* <Button title="Next Screen" onPress={() => navigation.navigate('Change Time')} /> */}
-    <View>
-      <Text>Select Minutes</Text>
-      <TextInput
-        style={styles.minutesTextInput}
-        keyboardType="numeric"
-        keyboardAppearance="dark"
-        returnKeyType="done"
-      />
-    </View>
-    <View>
-      <Button title="Set Minutes" />
-    </View>
-  </SafeAreaView>
-);
+  return (
+    <SafeAreaView>
+      {/* <Button title="Next Screen" onPress={() => navigation.navigate('Change Time')} /> */}
+      <View>
+        <Text>Select Minutes</Text>
+        <TextInput
+          value={minuteValue}
+          onChangeText={setMinuteValue}
+          style={styles.minutesTextInput}
+          keyboardType="numeric"
+          keyboardAppearance="dark"
+          returnKeyType="done"
+        />
+      </View>
+      <View>
+        <Button
+          title="Set Minutes"
+          onPress={() => {
+            alert(minuteValue);
+            route.params.setCurrentTime(minuteValue);
+          }}
+        />
+      </View>
+    </SafeAreaView>
+  );
+};
 
 ChangeTimeScreen.propTypes = {
   navigation: PropTypes.objectOf(PropTypes.object).isRequired,
