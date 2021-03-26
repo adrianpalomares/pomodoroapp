@@ -40,21 +40,21 @@ function getTimeString(currentTime) {
 
 const PomodoroScreen = ({ navigation }) => {
   const [pomodoroTime, setPomodoroTime] = React.useState(1500); // Default is 25 minutes
-  const [breakTime, setBreakTime] = React.useState(300) // Default is 5 minutes
+  const [breakTime, setBreakTime] = React.useState(300); // Default is 5 minutes
   // Timer
-  const [currentTime, setCurrentTime] = React.useState(0);
+  const [currentTime, setCurrentTime] = React.useState(pomodoroTime);
   const [paused, setPaused] = React.useState(false);
+  // Used to tell if it is break time
+  const [isBreak, setIsBreak] = React.useState(false);
 
-  // Initial setup of timer
-  React.useEffect(() => {
-    setCurrentTime(pomodoroTime);
-  }, []);
   let interval = null;
   React.useEffect(() => {
     // TODO: Check for 0
-    if (currentTime == 25) {
+    if (currentTime == 0) {
       // Vibrate then switch to other mode
       vibrate();
+      setCurrentTime(isBreak ? pomodoroTime : breakTime);
+      setIsBreak(!isBreak);
     }
 
     // Only starts timer if not paused
@@ -62,7 +62,7 @@ const PomodoroScreen = ({ navigation }) => {
       interval = setInterval(() => {
         // When the value is set in ChangeTime, it is treated as a string
         const valueInInteger = parseInt(currentTime);
-        setCurrentTime(valueInInteger + 1);
+        setCurrentTime(valueInInteger - 1);
       }, 1000);
     }
 
