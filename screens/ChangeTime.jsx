@@ -30,13 +30,12 @@ function convertToSeconds(minutes, seconds) {
 
 const ChangeTimeScreen = ({ navigation, route }) => {
   // Text input value
-  const [pomodoroMinuteValue, setPomodoroMinuteValue] = React.useState(null);
-  const [pomodoroSecondValue, setPomodoroSecondValue] = React.useState(null);
+  const [pomodoroMinuteValue, setPomodoroMinuteValue] = React.useState(Math.floor(route.params.pomodoroTime / 60)); // initial values will come from the current ones on the app
+  const [pomodoroSecondValue, setPomodoroSecondValue] = React.useState(route.params.pomodoroTime % 60);
 
-  const [breakMinuteValue, setBreakMinuteValue] = React.useState(null);
-  const [breakSecondValue, setBreakSecondValue] = React.useState(null);
+  const [breakMinuteValue, setBreakMinuteValue] = React.useState(Math.floor(route.params.breakTime / 60));
+  const [breakSecondValue, setBreakSecondValue] = React.useState(route.params.breakTime % 60);
 
-  // route.params.setCurrentTime(0);
   return (
     <SafeAreaView>
       {/* <Button title="Next Screen" onPress={() => navigation.navigate('Change Time')} /> */}
@@ -46,7 +45,7 @@ const ChangeTimeScreen = ({ navigation, route }) => {
       <View>
         <Text>Minutes</Text>
         <TextInput
-          value={pomodoroMinuteValue}
+          value={pomodoroMinuteValue.toString()}
           onChangeText={setPomodoroMinuteValue}
           style={styles.minutesTextInput}
           keyboardType="numeric"
@@ -57,7 +56,7 @@ const ChangeTimeScreen = ({ navigation, route }) => {
       <View>
         <Text>Seconds</Text>
         <TextInput
-          value={pomodoroSecondValue}
+          value={pomodoroSecondValue.toString()}
           onChangeText={setPomodoroSecondValue}
           style={styles.minutesTextInput}
           keyboardType="numeric"
@@ -71,7 +70,7 @@ const ChangeTimeScreen = ({ navigation, route }) => {
       <View>
         <Text>Minutes</Text>
         <TextInput
-          value={breakMinuteValue}
+          value={breakMinuteValue.toString()}
           onChangeText={setBreakMinuteValue}
           style={styles.minutesTextInput}
           keyboardType="numeric"
@@ -82,7 +81,7 @@ const ChangeTimeScreen = ({ navigation, route }) => {
       <View>
         <Text>Seconds</Text>
         <TextInput
-          value={breakSecondValue}
+          value={breakSecondValue.toString()}
           onChangeText={setBreakSecondValue}
           style={styles.minutesTextInput}
           keyboardType="numeric"
