@@ -6,6 +6,7 @@ import useColorScheme from 'react-native/Libraries/Utilities/useColorScheme';
 import ChangeTimeScreen from './screens/ChangeTime';
 // import { StyleSheet } from 'react-native';
 import PomodoroScreen from './screens/PomodoroScreen';
+import { Appearance } from 'react-native-appearance';
 
 // const styles = StyleSheet.create({
 //   container: {
@@ -18,8 +19,7 @@ import PomodoroScreen from './screens/PomodoroScreen';
 
 const Stack = createStackNavigator();
 export default function App() {
-  const scheme = useColorScheme();
-  alert(scheme)
+  const scheme = Appearance.getColorScheme();
   return (
     <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack.Navigator initialRouteName="Pomodoro" screenOptions={{ headerBackTitle: 'Back' }}>
