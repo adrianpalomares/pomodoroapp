@@ -1,3 +1,4 @@
+import { useTheme } from '@react-navigation/native';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { SafeAreaView, Text, Button, View, StyleSheet } from 'react-native';
@@ -9,7 +10,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 20,
-    backgroundColor: 'pink',
+    // backgroundColor: 'pink',
   },
   timeText: {
     fontSize: 100,
@@ -20,7 +21,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     height: 50,
     marginTop: 20,
-    backgroundColor: 'red',
+    // backgroundColor: 'red',
   },
   changeTimeContainer: {
     marginTop: 5,
@@ -57,6 +58,7 @@ function resetTimer(pomodoroTime, setCurrentTime, setIsBreak, setPaused) {
 }
 
 const PomodoroScreen = ({ navigation }) => {
+  const { colors } = useTheme();
   const [pomodoroTime, setPomodoroTime] = React.useState(1500); // Default is 25 minutes
   const [breakTime, setBreakTime] = React.useState(300); // Default is 5 minutes
   // Timer
@@ -92,7 +94,7 @@ const PomodoroScreen = ({ navigation }) => {
   return (
     <SafeAreaView>
       <View style={styles.timeContainer}>
-        <Text style={styles.timeText}>{getTimeString(currentTime)}</Text>
+        <Text style={[styles.timeText, { color: colors.text }]}>{getTimeString(currentTime)}</Text>
       </View>
       <View style={styles.timeActionContainer}>
         {paused ? (

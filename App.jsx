@@ -1,10 +1,12 @@
 /* eslint-disable react/style-prop-object */
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
+import useColorScheme from 'react-native/Libraries/Utilities/useColorScheme';
 import ChangeTimeScreen from './screens/ChangeTime';
 // import { StyleSheet } from 'react-native';
 import PomodoroScreen from './screens/PomodoroScreen';
+
 
 // const styles = StyleSheet.create({
 //   container: {
@@ -15,12 +17,11 @@ import PomodoroScreen from './screens/PomodoroScreen';
 //   },
 // });
 
-// Theme setup
-
 const Stack = createStackNavigator();
 export default function App() {
+  const scheme = useColorScheme();
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={DarkTheme}>
       <Stack.Navigator initialRouteName="Pomodoro" screenOptions={{ headerBackTitle: 'Back' }}>
         <Stack.Screen name="Pomodoro" component={PomodoroScreen} />
         <Stack.Screen name="ChangeTimeScreen" component={ChangeTimeScreen} />

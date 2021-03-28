@@ -1,3 +1,4 @@
+import { useTheme } from '@react-navigation/native';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Button, SafeAreaView, Text, TextInput, View, StyleSheet } from 'react-native';
@@ -29,6 +30,7 @@ function convertToSeconds(minutes, seconds) {
 }
 
 const ChangeTimeScreen = ({ navigation, route }) => {
+  const { colors } = useTheme();
   // Text input value
   const [pomodoroMinuteValue, setPomodoroMinuteValue] = React.useState(Math.floor(route.params.pomodoroTime / 60)); // initial values will come from the current ones on the app
   const [pomodoroSecondValue, setPomodoroSecondValue] = React.useState(route.params.pomodoroTime % 60);
@@ -40,10 +42,10 @@ const ChangeTimeScreen = ({ navigation, route }) => {
     <SafeAreaView>
       {/* <Button title="Next Screen" onPress={() => navigation.navigate('Change Time')} /> */}
       <View style={styles.centering}>
-        <Text style={styles.heading}>Pomodoro Time</Text>
+        <Text style={[styles.heading, { color: colors.text }]}>Pomodoro Time</Text>
       </View>
       <View>
-        <Text>Minutes</Text>
+        <Text style={{ color: colors.text }}>Minutes</Text>
         <TextInput
           value={pomodoroMinuteValue.toString()}
           onChangeText={setPomodoroMinuteValue}
@@ -54,7 +56,7 @@ const ChangeTimeScreen = ({ navigation, route }) => {
         />
       </View>
       <View>
-        <Text>Seconds</Text>
+        <Text style={{ color: colors.text }}>Seconds</Text>
         <TextInput
           value={pomodoroSecondValue.toString()}
           onChangeText={setPomodoroSecondValue}
@@ -65,10 +67,10 @@ const ChangeTimeScreen = ({ navigation, route }) => {
         />
       </View>
       <View style={styles.centering}>
-        <Text style={styles.heading}>Break Time</Text>
+        <Text style={[styles.heading, { color: colors.text }]}>Break Time</Text>
       </View>
       <View>
-        <Text>Minutes</Text>
+        <Text style={{ color: colors.text }}>Minutes</Text>
         <TextInput
           value={breakMinuteValue.toString()}
           onChangeText={setBreakMinuteValue}
@@ -79,7 +81,7 @@ const ChangeTimeScreen = ({ navigation, route }) => {
         />
       </View>
       <View>
-        <Text>Seconds</Text>
+        <Text style={{ color: colors.text }}>Seconds</Text>
         <TextInput
           value={breakSecondValue.toString()}
           onChangeText={setBreakSecondValue}
