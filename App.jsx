@@ -21,7 +21,7 @@ const Stack = createStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Pomodoro">
+      <Stack.Navigator initialRouteName="Pomodoro" screenOptions={{ headerBackTitle: 'Back' }}>
         <Stack.Screen name="Pomodoro" component={PomodoroScreen} />
         <Stack.Screen name="ChangeTimeScreen" component={ChangeTimeScreen} />
       </Stack.Navigator>
