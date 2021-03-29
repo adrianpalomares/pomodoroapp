@@ -8,10 +8,9 @@ const styles = StyleSheet.create({
   centering: {
     // justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 5,
   },
   heading: {
-    fontSize: 50,
+    fontSize: 30,
   },
   minutesTextInput: {
     backgroundColor: '#fff',
@@ -145,7 +144,7 @@ const ChangeTimeScreen = ({ navigation, route }) => {
               alert('Time updated!');
             }}
           >
-            <Text style={{ color: 'white', fontSize: 25 }}>Apply</Text>
+            <Text style={{ color: 'white', fontSize: 25 }}>Save</Text>
           </TouchableWithoutFeedback>
         </View>
       </TouchableWithoutFeedback>
