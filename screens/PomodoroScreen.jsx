@@ -98,6 +98,11 @@ const PomodoroScreen = ({ navigation }) => {
     };
   }, [currentTime, paused]);
 
+  // If the time changes, it will update it by resetting
+  React.useEffect(() => {
+    resetTimer(pomodoroTime, setCurrentTime, setIsBreak, setPaused);
+  }, [pomodoroTime, breakTime]);
+
   return (
     <SafeAreaView>
       <View style={styles.timeContainer}>
