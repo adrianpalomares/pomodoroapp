@@ -1,8 +1,8 @@
 import { useTheme } from '@react-navigation/native';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { SafeAreaView, Text, Button, View, StyleSheet } from 'react-native';
-import { TouchableHighlight, TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { vibrate } from '../utils';
 // Default blue: #007AFF
 const styles = StyleSheet.create({

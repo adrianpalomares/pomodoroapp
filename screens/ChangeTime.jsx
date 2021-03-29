@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
   centering: {
     // justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 5,
   },
   heading: {
     fontSize: 50,
@@ -110,18 +111,22 @@ const ChangeTimeScreen = ({ navigation, route }) => {
         </View>
         <View style={styles.actionContainer}>
           {/* TODO: Handle empty value, null by default */}
-          {/* <Button
-          title="Set Minutes"
-          // TODO: Add break time update, also using wrong value
-          onPress={() => {
-            route.params.setPomodoroTime(convertToSeconds(pomodoroMinuteValue, pomodoroSecondValue));
-            route.params.setBreakTime(convertToSeconds(breakMinuteValue, breakSecondValue));
-            alert('Time updated!');
-          }}
-        /> */}
           <TouchableWithoutFeedback
             style={styles.buttonStyle}
             onPress={() => {
+              // At the moment, the app only supports minutes
+              if (
+                pomodoroMinuteValue >= 60 ||
+                pomodoroSecondValue >= 60 ||
+                breakMinuteValue >= 60 ||
+                breakSecondValue >= 60
+              ) {
+                alert('Max time allowed is 59:59');
+                return;
+              }
+
+              // Handle null or empty values
+
               route.params.setPomodoroTime(convertToSeconds(pomodoroMinuteValue, pomodoroSecondValue));
               route.params.setBreakTime(convertToSeconds(breakMinuteValue, breakSecondValue));
               alert('Time updated!');
