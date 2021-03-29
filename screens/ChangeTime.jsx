@@ -16,6 +16,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     height: 30,
     width: '50%',
+    borderRadius: 20,
+    padding: 10,
+    height: 45,
+    marginTop: 10,
+    marginLeft: 10
   },
   actionContainer: {
     justifyContent: 'center',
