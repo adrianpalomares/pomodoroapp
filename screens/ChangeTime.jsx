@@ -125,7 +125,16 @@ const ChangeTimeScreen = ({ navigation, route }) => {
                 return;
               }
 
-              // Handle null or empty values
+              // Handle empty values
+              if (
+                pomodoroMinuteValue === '' ||
+                pomodoroSecondValue === '' ||
+                breakMinuteValue === '' ||
+                breakSecondValue === ''
+              ) {
+                alert('No empty values');
+                return;
+              }
 
               route.params.setPomodoroTime(convertToSeconds(pomodoroMinuteValue, pomodoroSecondValue));
               route.params.setBreakTime(convertToSeconds(breakMinuteValue, breakSecondValue));
