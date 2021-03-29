@@ -105,6 +105,11 @@ const PomodoroScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView>
+      <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+        <Text style={{ fontSize: 40, fontWeight: 'bold', color: colors.text }}>
+          {isBreak ? 'Break Timer' : 'Work Timer'}
+        </Text>
+      </View>
       <View style={styles.timeContainer}>
         <Text style={[styles.timeText, { color: colors.text }]}>{getTimeString(currentTime)}</Text>
       </View>
