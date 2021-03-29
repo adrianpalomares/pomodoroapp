@@ -2,8 +2,9 @@ import { useTheme } from '@react-navigation/native';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { SafeAreaView, Text, Button, View, StyleSheet } from 'react-native';
+import { TouchableHighlight, TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { vibrate } from '../utils';
-
+// Default blue: #007AFF
 const styles = StyleSheet.create({
   timeContainer: {
     // flex: 2,
@@ -23,8 +24,14 @@ const styles = StyleSheet.create({
     marginTop: 20,
     // backgroundColor: 'red',
   },
+  actionButtons: {
+    marginLeft: 15,
+    marginTop: 50,
+  },
   changeTimeContainer: {
-    marginTop: 5,
+    marginTop: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 
@@ -98,15 +105,31 @@ const PomodoroScreen = ({ navigation }) => {
       </View>
       <View style={styles.timeActionContainer}>
         {paused ? (
-          <Button title="Start" onPress={() => setPaused(false)} />
+          <TouchableWithoutFeedback
+            style={{ marginRight: 15, backgroundColor: 'green', borderRadius: 20, padding: 10 }}
+            onPress={() => setPaused(false)}
+          >
+            <Text style={{ color: 'white', fontSize: 25 }}>Start</Text>
+          </TouchableWithoutFeedback>
         ) : (
-          <Button title="Pause" onPress={() => setPaused(true)} />
+          <TouchableWithoutFeedback
+            style={{ marginRight: 15, backgroundColor: 'red', borderRadius: 20, padding: 10 }}
+            onPress={() => setPaused(true)}
+          >
+            <Text style={{ color: 'white', fontSize: 25 }}>Pause</Text>
+          </TouchableWithoutFeedback>
         )}
-        <Button title="Reset" onPress={() => resetTimer(pomodoroTime, setCurrentTime, setIsBreak, setPaused)} />
+
+        <TouchableWithoutFeedback
+          style={{ backgroundColor: '#007AFF', borderRadius: 20, padding: 10 }}
+          onPress={() => resetTimer(pomodoroTime, setCurrentTime, setIsBreak, setPaused)}
+        >
+          <Text style={{ color: 'white', fontSize: 25 }}>Reset</Text>
+        </TouchableWithoutFeedback>
       </View>
       <View style={styles.changeTimeContainer}>
-        <Button
-          title="Change Time"
+        <TouchableWithoutFeedback
+          style={{ backgroundColor: '#007AFF', borderRadius: 20, padding: 10 }}
           onPress={() =>
             navigation.navigate('ChangeTimeScreen', {
               currentTime,
@@ -117,7 +140,9 @@ const PomodoroScreen = ({ navigation }) => {
               setBreakTime,
             })
           }
-        />
+        >
+          <Text style={{ color: 'white', fontSize: 25 }}>Settings</Text>
+        </TouchableWithoutFeedback>
       </View>
     </SafeAreaView>
   );

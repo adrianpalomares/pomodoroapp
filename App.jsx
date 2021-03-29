@@ -1,12 +1,11 @@
 /* eslint-disable react/style-prop-object */
-import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
+import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
-import useColorScheme from 'react-native/Libraries/Utilities/useColorScheme';
+import { Appearance } from 'react-native-appearance';
 import ChangeTimeScreen from './screens/ChangeTime';
 // import { StyleSheet } from 'react-native';
 import PomodoroScreen from './screens/PomodoroScreen';
-import { Appearance } from 'react-native-appearance';
 
 // const styles = StyleSheet.create({
 //   container: {
