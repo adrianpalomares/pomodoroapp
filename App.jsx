@@ -23,7 +23,7 @@ export default function App() {
     <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack.Navigator initialRouteName="Pomodoro" screenOptions={{ headerBackTitle: 'Back' }}>
         <Stack.Screen name="Pomodoro" component={PomodoroScreen} />
-        <Stack.Screen name="ChangeTimeScreen" component={ChangeTimeScreen} />
+        <Stack.Screen name="ChangeTimeScreen" component={ChangeTimeScreen} options={{ title: 'Settings' }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
