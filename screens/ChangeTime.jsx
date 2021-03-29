@@ -71,6 +71,7 @@ const ChangeTimeScreen = ({ navigation, route }) => {
             keyboardType="numeric"
             keyboardAppearance="dark"
             returnKeyType="done"
+            maxLength="2"
           />
         </View>
         <View>
@@ -82,6 +83,7 @@ const ChangeTimeScreen = ({ navigation, route }) => {
             keyboardType="numeric"
             keyboardAppearance="dark"
             returnKeyType="done"
+            maxLength="2"
           />
         </View>
         <View style={styles.centering}>
@@ -96,6 +98,7 @@ const ChangeTimeScreen = ({ navigation, route }) => {
             keyboardType="numeric"
             keyboardAppearance="dark"
             returnKeyType="done"
+            maxLength="2"
           />
         </View>
         <View>
@@ -107,6 +110,7 @@ const ChangeTimeScreen = ({ navigation, route }) => {
             keyboardType="numeric"
             keyboardAppearance="dark"
             returnKeyType="done"
+            maxLength="2"
           />
         </View>
         <View style={styles.actionContainer}>
